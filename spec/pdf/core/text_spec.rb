@@ -3,6 +3,18 @@
 require 'spec_helper'
 
 RSpec.describe PDF::Core::Text do
+  class DummyFont
+    def encode_text(text, _options)
+      [nil, text]
+    end
+
+    def identifier_for(_subset)
+      :Font
+    end
+
+    def add_to_current_page(_subset); end
+  end
+
   # rubocop: disable RSpec/InstanceVariable
   class TextMock
     include PDF::Core::Text
@@ -12,6 +24,14 @@ RSpec.describe PDF::Core::Text do
     def add_content(str)
       @text ||= +''
       @text << str
+    end
+
+    def font
+      @font ||= DummyFont.new
+    end
+
+    def font_size
+      12
     end
   end
   # rubocop: enable RSpec/InstanceVariable
@@ -66,6 +86,13 @@ RSpec.describe PDF::Core::Text do
       it 'outputs correct PDF content' do
         expect(mock.text).to eq("\n10.0 TcTEST\n0.0 Tc")
       end
+    end
+  end
+
+  describe '#add_text_content' do
+    it 'handles frozen strings' do
+      expect { mock.add_text_content 'text', 0, 0, {} }
+        .not_to raise_error
     end
   end
 end
