@@ -1,6 +1,6 @@
 # PDF::Core
 
-[![Build Status](https://travis-ci.org/prawnpdf/pdf-core.png?branch=master)](https://travis-ci.org/prawnpdf/pdf-core)
+[![Build Status](https://circleci.com/gh/prawnpdf/pdf-core.svg?style=svg)](https://circleci.com/gh/prawnpdf/pdf-core)
 ![Maintained: yes](https://img.shields.io/badge/maintained-yes-brightgreen.png)
 
 This is an experimental gem that extracts low-level PDF functionality from
