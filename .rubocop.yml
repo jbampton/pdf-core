@@ -3,7 +3,7 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: "2.4"
   Include:
     - '**/*.rb'
     - '**/Rakefile'
@@ -87,6 +87,11 @@ Style/PercentLiteralDelimiters:
 Style/SymbolProc:
   Exclude:
     - 'spec/spec_helper.rb'
+
+# unpack1 is buggy in Ruby 2.4.0
+# https://bugs.ruby-lang.org/issues/13075
+Style/UnpackFirst:
+  Enabled: false
 
 Style/WhileUntilModifier:
   Enabled: false
